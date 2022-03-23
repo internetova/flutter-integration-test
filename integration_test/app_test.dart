@@ -28,22 +28,22 @@ void main() {
       logoutTester = LogoutTester(tester);
       alertDialogTester = AlertDialogTester(tester);
 
-      await loginTester.checkLoginScreenOpened();
+      await loginTester.checkScreenOpenedByKey(WarmingUpKeys.appBarTitleLoginKey);
       await loginTester.enterPassword(_passwordIncorrect);
-      await loginTester.tapLoginButton();
-      await alertDialogTester.checkAlertOpened();
+      await loginTester.tapButton(WarmingUpKeys.loginBtn);
+      await alertDialogTester.checkAlert();
       await alertDialogTester.tapToAlertButton(WarmingUpKeys.confirmAlert);
-      await alertDialogTester.checkAlertClosed();
-      await loginTester.checkLoginScreenOpened();
+      await alertDialogTester.checkAlert(isOpened: false);
+      await loginTester.checkScreenOpenedByKey(WarmingUpKeys.appBarTitleLoginKey);
       await loginTester.enterPassword(_passwordCorrect);
-      await loginTester.tapLoginButton();
-      await logoutTester.checkLogoutScreenOpened();
-      await logoutTester.tapLogoutButton();
-      await alertDialogTester.checkAlertOpened();
+      await loginTester.tapButton(WarmingUpKeys.loginBtn);
+      await logoutTester.checkScreenOpenedByKey(WarmingUpKeys.appBarTitleLogoutKey);
+      await logoutTester.tapButton(WarmingUpKeys.logoutBtn);
+      await alertDialogTester.checkAlert();
       await alertDialogTester.tapToAlertButton(WarmingUpKeys.cancelAlert);
-      await alertDialogTester.checkAlertClosed();
-      await logoutTester.tapLogoutButton();
-      await alertDialogTester.checkAlertOpened();
+      await alertDialogTester.checkAlert(isOpened: false);
+      await logoutTester.tapButton(WarmingUpKeys.logoutBtn);
+      await alertDialogTester.checkAlert();
       await alertDialogTester.tapToAlertButton(WarmingUpKeys.confirmAlert);
     },
   );
